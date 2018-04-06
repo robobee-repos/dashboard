@@ -64,7 +64,7 @@ spec:
             cpu: <vars.dashboard.limits.cpu>
             memory: <vars.dashboard.limits.memory>
           requests:
-            cpu: vars.dashboard.requests.cpu
+            cpu: <vars.dashboard.requests.cpu>
             memory: <vars.dashboard.requests.memory>
         ports:
         - containerPort: 8443
