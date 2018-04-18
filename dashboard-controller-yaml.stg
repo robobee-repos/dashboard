@@ -60,12 +60,16 @@ spec:
       - name: kubernetes-dashboard
         image: <vars.dashboard.image.name>:<vars.dashboard.image.version>
         resources:
-          limits:
-            cpu: <vars.dashboard.limits.cpu>
-            memory: <vars.dashboard.limits.memory>
-          requests:
-            cpu: <vars.dashboard.requests.cpu>
-            memory: <vars.dashboard.requests.memory>
+<if(vars.dashboard.limits)>
+            limits:
+              <if(vars.dashboard.limits.cpu)>cpu: <vars.dashboard.limits.cpu><endif>
+              <if(vars.dashboard.limits.memory)>memory: <vars.dashboard.limits.memory><endif>
+<endif>
+<if(vars.dashboard.requests)>
+            requests:
+              <if(vars.dashboard.requests.cpu)>cpu: <vars.dashboard.requests.cpu><endif>
+              <if(vars.dashboard.requests.memory)>memory: <vars.dashboard.requests.memory><endif>
+<endif>
         ports:
         - containerPort: 8443
           protocol: TCP
