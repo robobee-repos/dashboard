@@ -10,6 +10,13 @@
  * vars.dashboard.limits.memory
  * vars.dashboard.requests.cpu
  * vars.dashboard.requests.memory
+ * vars.dashboard.affinity.key
+ * vars.dashboard.affinity.name
+ * vars.dashboard.affinity.required
+ * vars.dashboard.allowOnMaster
+ * vars.dashboard.tolerations[].effect
+ * vars.dashboard.tolerations[].key
+ * vars.dashboard.tolerations[].value
  */
 
 /*
@@ -174,10 +181,9 @@ spec:
       - name: tmp-volume
         emptyDir: {}
       serviceAccountName: kubernetes-dashboard
-      # Comment the following tolerations if Dashboard must not be deployed on master
-      tolerations:
-      - key: node-role.kubernetes.io/master
-        effect: NoSchedule
+      <affinitiesGroup(parent, vars, vars.dashboard.affinity)>
+      <tolerationMasterGroup(parent, vars, vars.dashboard.allowOnMaster)>
+      <tolerationsGroup(parent, vars, vars.dashboard.tolerations, vars.dashboard.allowOnMaster)>
 
 ---
 # ------------------- Dashboard Service ------------------- #
