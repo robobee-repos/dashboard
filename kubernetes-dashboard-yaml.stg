@@ -145,15 +145,16 @@ spec:
         ports:
         - containerPort: 8443
           protocol: TCP
+        resources:
 <if(vars.dashboard.limits)>
-        limits:
-          <if(vars.dashboard.limits.cpu)>cpu: <vars.dashboard.limits.cpu><endif>
-          <if(vars.dashboard.limits.memory)>memory: <vars.dashboard.limits.memory><endif>
+          limits:
+            <if(vars.dashboard.limits.cpu)>cpu: <vars.dashboard.limits.cpu><endif>
+            <if(vars.dashboard.limits.memory)>memory: <vars.dashboard.limits.memory><endif>
 <endif>
 <if(vars.dashboard.requests)>
-        requests:
-          <if(vars.dashboard.requests.cpu)>cpu: <vars.dashboard.requests.cpu><endif>
-          <if(vars.dashboard.requests.memory)>memory: <vars.dashboard.requests.memory><endif>
+          requests:
+            <if(vars.dashboard.requests.cpu)>cpu: <vars.dashboard.requests.cpu><endif>
+            <if(vars.dashboard.requests.memory)>memory: <vars.dashboard.requests.memory><endif>
 <endif>
         args:
           - --auto-generate-certificates
